@@ -1,4 +1,4 @@
-# CPBR11 Arquitetura de Microsserviços, Overview, Implementação e Deploy.
+#Arquitetura de Microsserviços.
 
 Código fonte da palestra sobre Arquitetura de Microsserviços, Overview, Implementação e Deploy .
 
