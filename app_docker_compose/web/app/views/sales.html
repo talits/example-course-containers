@@ -1,0 +1,63 @@
+<form name="saleForm" ng-submit="submit(saleForm)">
+    <h3 class="pull-left">Lançamento de venda</h3>
+    <hr>
+    <div class="row">
+        <div class=" col-md-12 form-group">
+            <label>Produto</label>
+            <select name="" ng-model="sale.productId" ng-change="calculate()" class="form-control" ng-options="product.id as ('cd: ' + (product.code + ' - desc: ' + product.description)) for product in products">
+                <option value="">Selecione um produto</option>
+            </select>
+            <small class="form-text text-muted">Selecione um produto</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col form-group">
+            <label>Quantidade</label>
+            <input type="number" name="quantity" ng-keyup="calculate()" class="form-control" ng-model="sale.quantity" aria-describedby="quantity"
+                placeholder="Quantidade">
+            <small class="form-text text-muted">Quantidade</small>
+        </div>
+        <div class=" col form-group">
+            <label>Total</label>
+            <h3>{{ sale.total | currency }}</h3>
+        </div>
+
+    </div>
+    <button ng-hide="busy.form" type="submit" class="btn btn-primary">Vender</button>
+    <div ng-show="busy.form" class=" spinner "></div>
+
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <h3 class="pull-left">Vendas lançadas</h3>
+        <hr>
+        <div class="grid-scroll">
+            <table ng-hide="busy.list" class="table table-inverse ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Total</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sale in sales">
+                        <th scope="row">{{sale.id}}</th>
+                        <td>{{ getProdcutDescriptionById(sale.productId) }}</td>
+                        <td>{{sale.quantity}}</td>
+                        <td>{{ sale.total | currency }}</td>
+                        <td>{{ sale.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+                    </tr>
+                </tbody>
+
+
+
+            </table>
+        </div>
+        <div ng-show="busy.list" class=" spinner "></div>
+    </div>
+</div>

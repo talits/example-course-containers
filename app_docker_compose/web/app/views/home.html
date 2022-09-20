@@ -1,0 +1,73 @@
+<form name="productForm" ng-submit="submit(productForm)">
+    <h3 class="pull-left">Cadastrar Produto</h3>
+    <hr>
+    <div class="row">
+        <div class=" col-md-4 form-group">
+            <label>Código</label>
+            <input type="text" name="code" class="form-control" ng-model="product.code" aria-describedby="code" placeholder="Código do produto">
+            <small class="form-text text-muted">Código do produto</small>
+        </div>
+        <div class=" col form-group">
+            <label>Descrição</label>
+            <input type="text" name="description" class="form-control" ng-model="product.description" aria-describedby="description"
+                placeholder="Descrição do produto">
+            <small class="form-text text-muted">Descrição do produto</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col form-group">
+            <label>Preço unitário</label>
+            <input type="number" name="unitPrice" class="form-control" ng-model="product.unitPrice" aria-describedby="unitPrice" placeholder="Preço unitário do produto">
+            <small class="form-text text-muted">Preço unitário do produto</small>
+        </div>
+        <div class=" col form-group">
+            <label>Quantidade</label>
+            <input type="number" name="quantity" class="form-control" ng-model="product.quantity" aria-describedby="quantity" placeholder="Quantidade do produto">
+            <small class="form-text text-muted">Quantidade do produto</small>
+        </div>
+        <div class=" col form-group">
+            <label>Quantidade mínima</label>
+            <input type="number" name="minimumQuantity" class="form-control" ng-model="product.minimumQuantity" aria-describedby="minimumQuantity"
+                placeholder="Quantidade mínima do produto">
+            <small class="form-text text-muted">Quantidade mínima em estoque</small>
+        </div>
+    </div>
+    <button ng-hide="busy.form" type="submit" class="btn btn-primary">Cadastrar produto</button>
+    <div ng-show="busy.form" class=" spinner "></div>
+
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <h3 class="pull-left">Produtos cadastrados </h3>
+        <hr>
+        <div class="grid-scroll">
+            <table ng-hide="busy.list" class="table table-inverse ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Preço unitário</th>
+                        <th>Quantidade</th>
+                        <th>Situação do estoque</th>
+                        <th>Total em estoque</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in products">
+                        <th scope="row">{{product.id}}</th>
+                        <td>{{product.code}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{ product.unitPrice | currency }}</td>
+                        <td>{{product.quantity}}</td>
+                        <td> {{ validateStock(product) }}</td>
+                        <td>{{ (product.quantity * product.unitPrice) | currency }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

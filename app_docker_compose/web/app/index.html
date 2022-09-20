@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="app">
+
+
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+            <div class="cover-container">
+
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Microsserviços</h3>
+                        <nav class="nav nav-masthead" ng-init="products = true ">
+                            <img width="70px" height="70px"  src="	https://stack.desenvolvedor.expert/appendix/docker/images/compose.png" />
+                            <a class="nav-link {{products ? 'active' : '' }}" ng-click="products = true; sales = false;" href="#!/">Produtos</a>
+                            <a class="nav-link  {{sales ? 'active' : '' }}" ng-click="products = false; sales = true;" href="#!/sales">Vendas</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <div ng-view class="inner cover">
+
+                </div>
+                <br/>
+                <br/>
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p>Arquitetura de Microsserviços, by <a href="https://gihub.com/talits">Talita Bernardes Pereira</a>.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="public/angular/angular.js"></script>
+    <script src="public/angular-route/angular-route.js"></script>
+    <script src="app/services/app.home.srv.js"></script>
+    <script src="app/controllers/app.home.ctrl.js"></script>
+    <script src="app/controllers/app.sales.ctrl.js"></script>
+    <script src="app/app.js"></script>
+</body>
+
+
+</html>

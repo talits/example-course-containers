@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+  products:
+    restart: always
+    build: ./api/api.products/.
+    ports:
+    - "3000:3000"
+    container_name: products
+    depends_on: 
+    - rmq
+    environment:
+      PORT: 3000
+      RMQ_HOST: 'rmq'
+      DEBUG: "true"
+      
+  sales:
+    restart: always
+    build: ./api/api.sales/.
+    depends_on: 
+    - rmq
+    ports:
+    - "3001:3001"
+    container_name: sales
+    environment:
+      PORT: 3001
+      RMQ_HOST: 'rmq'
+      DEBUG: "true"
+
+  rmq:
+    image: rabbitmq:management
+    container_name: rmq
+    hostname: rmq
+    ports:
+    - '15672:15672'
+    - '5672:5672'
+
+  web:
+    restart: always
+    build: ./web/.
+    ports:
+    - "80:4004"
+    container_name: web
+    environment:
+      PORT: 4004
+      DEBUG: "true"
+

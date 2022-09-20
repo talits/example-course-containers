@@ -1,0 +1,19 @@
+{
+  "name": "api.sales",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Talita Bernardes",
+  "license": "ISC",
+  "dependencies": {
+    "amqp": "^0.2.6",
+    "cors": "^2.8.4", 
+    "express": "^4.16.1",
+    "body-parser": "^1.18.0",
+    "sequelize": "6.0.0-beta.1",
+    "sqlite3": "^5.0.2"
+  }
+}
